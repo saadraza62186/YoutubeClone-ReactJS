@@ -1,26 +1,27 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import styled from "styled-components";
-import ThumbUpIcon from "@mui/icons-material/ThumbUp";
-import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt";
-import ReplyIcon from "@mui/icons-material/Reply";
-import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import Comments from "../components/Comments";
-import Card from "../components/Card";
+"use client"
+import { useParams } from "react-router-dom"
+import styled from "styled-components"
+import ThumbUpIcon from "@mui/icons-material/ThumbUp"
+import ThumbDownAltIcon from "@mui/icons-material/ThumbDownAlt"
+import ReplyIcon from "@mui/icons-material/Reply"
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder"
+import Comments from "../components/Comments"
+import Card from "../components/Card"
+
 const Video = () => {
-  const { videoId } = useParams();
+  const { videoId } = useParams()
 
   return (
     <Container>
       <Contents>
-      <VideoWrapper>
-      <iframe
-        src="/image.jpg"
-        title="YouTube Video Player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        autoFullScreen
-      />
-    </VideoWrapper>
+        <VideoWrapper>
+          <iframe
+            src="/image.jpg"
+            title="YouTube Video Player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            autoFullScreen
+          />
+        </VideoWrapper>
         <Title>Test Video</Title>
         <Details>
           <Info>660,908 views ~ 1 day ago</Info>
@@ -30,14 +31,14 @@ const Video = () => {
             </Button>
             <Button>
               <ThumbDownAltIcon />
-              Dislike
+              <ButtonText>Dislike</ButtonText>
             </Button>
             <Button>
-              <ReplyIcon /> Share
+              <ReplyIcon /> <ButtonText>Share</ButtonText>
             </Button>
             <Button>
               <BookmarkBorderIcon />
-              Save
+              <ButtonText>Save</ButtonText>
             </Button>
           </Buttons>
         </Details>
@@ -49,10 +50,8 @@ const Video = () => {
               <ChannelName>Saad's Channel</ChannelName>
               <ChannelCounter>200K Subscribers</ChannelCounter>
               <Description>
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni,
-                commodi sed! Aliquam iusto quidem quos, magnam modi debitis quia
-                consequatur maxime ullam in amet nulla. Error ipsa ad tempore!
-                Laboriosam.
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magni, commodi sed! Aliquam iusto quidem quos,
+                magnam modi debitis quia consequatur maxime ullam in amet nulla. Error ipsa ad tempore! Laboriosam.
               </Description>
             </ChannelDetail>
           </ChannelInfo>
@@ -62,55 +61,57 @@ const Video = () => {
         <Comments />
       </Contents>
       <Recommendation>
-        <Card type='sm'/>
-        <Card type='sm'/>
-        <Card type='sm'/>
-        <Card type='sm'/>
-        <Card type='sm'/>
-        <Card type='sm'/>
-        <Card type='sm'/>
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
+        <Card type="sm" />
       </Recommendation>
     </Container>
-  );
-};
+  )
+}
 
-export default Video;
+export default Video
 
-// Styled Components
 const Container = styled.div`
   display: flex;
-  gap: 16px; /* Space between Contents and Recommendation */
-  padding: 16px; /* Ensures proper spacing inside the container */
-`;
+  flex-direction: row;
+  gap: 24px;
+  
+  @media (max-width: 1024px) {
+    flex-direction: column;
+  }
+`
 
 const Contents = styled.div`
-  flex: 6;
-  min-width: 0; /* Prevents Contents from shrinking unexpectedly */
-`;
+  flex: 1;
+`
 
 const Recommendation = styled.div`
-  flex: 2;
-  display: flex;
-  flex-direction: column;
-  gap: 16px; /* Space between items inside Recommendation */
-  margin-left: 16px; /* Adjusted margin to separate it from Contents */
-  margin-top: 16px; /* Optional: Adds space above the Recommendation section */
-`;
+  flex: 0 0 350px;
+  
+  @media (max-width: 1024px) {
+    flex: 1;
+    width: 100%;
+  }
+`
 
 const VideoWrapper = styled.div`
-  /* Optional: Add a background or styling */
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-
+  width: 100%;
+  position: relative;
+  padding-top: 56.25%; /* 16:9 Aspect Ratio */
+  
   iframe {
-    width: 780px;
-    height: 450px;
-    border: none; /* Optional: Removes the border */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
   }
-`;
+`
 
 const Title = styled.div`
   font-size: 18px;
@@ -118,75 +119,121 @@ const Title = styled.div`
   margin-top: 20px;
   margin-bottom: 10px;
   color: ${({ theme }) => theme.text};
-`;
+  
+  @media (max-width: 480px) {
+    font-size: 16px;
+  }
+`
 
 const Details = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-`;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+`
 
 const Info = styled.div`
   color: ${({ theme }) => theme.textSoft};
-`;
+  
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+`
 
 const Buttons = styled.div`
   display: flex;
   gap: 20px;
   color: ${({ theme }) => theme.text};
-`;
+  
+  @media (max-width: 480px) {
+    gap: 10px;
+  }
+`
 
 const Button = styled.div`
   display: flex;
   align-items: center;
   gap: 5px;
   cursor: pointer;
-`;
+  
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+`
+
+const ButtonText = styled.span`
+  @media (max-width: 480px) {
+    display: none;
+  }
+`
 
 const Hr = styled.div`
   margin: 15px 0px;
   border: 0.5px solid ${({ theme }) => theme.textSoft};
-`;
+`
 
 const Channel = styled.div`
   display: flex;
   justify-content: space-between;
-`;
+  
+  @media (max-width: 768px) {
+    flex-direction: column;
+    gap: 15px;
+  }
+`
 
 const ChannelInfo = styled.div`
   display: flex;
   gap: 10px;
-`;
+`
 
 const Image = styled.img`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-`;
+  
+  @media (max-width: 480px) {
+    width: 40px;
+    height: 40px;
+  }
+`
 
 const ChannelDetail = styled.div`
   display: flex;
   flex-direction: column;
   color: ${({ theme }) => theme.text};
-`;
+`
 
 const ChannelName = styled.span`
   font-weight: 500;
   font-size: 16px;
   color: ${({ theme }) => theme.text};
-`;
+  
+  @media (max-width: 480px) {
+    font-size: 14px;
+  }
+`
 
 const ChannelCounter = styled.span`
   font-size: 12px;
   color: ${({ theme }) => theme.textSoft};
   margin-top: 5px;
   margin-bottom: 20px;
-`;
+`
 
 const Description = styled.p`
   font-size: 14px;
   color: ${({ theme }) => theme.text};
-`;
+  
+  @media (max-width: 480px) {
+    font-size: 12px;
+  }
+`
 
 const Subscribe = styled.button`
   background-color: #cc1a00;
@@ -197,5 +244,14 @@ const Subscribe = styled.button`
   font-weight: 500;
   cursor: pointer;
   height: max-content;
-  padding: 10px 20px;
-`;
+  
+  @media (max-width: 768px) {
+    align-self: flex-start;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+`
+

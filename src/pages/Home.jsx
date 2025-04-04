@@ -1,25 +1,24 @@
-import React from 'react'
-import Card from '../components/Card'
-import styled from 'styled-components'
+import Card from "../components/Card"
+import styled from "styled-components"
 
 const Home = () => {
   return (
     <Container>
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
+      <Card />
     </Container>
   )
 }
@@ -27,9 +26,13 @@ const Home = () => {
 export default Home
 
 const Container = styled.div`
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap ;
-
-
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  
+  @media (max-width: 480px) {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 15px;
+  }
 `
+

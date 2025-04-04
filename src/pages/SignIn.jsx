@@ -1,5 +1,4 @@
-import React from 'react';
-import styled from 'styled-components';
+import styled from "styled-components"
 
 const SignIn = () => {
   return (
@@ -26,20 +25,20 @@ const SignIn = () => {
         </Links>
       </More>
     </Container>
-  );
-};
+  )
+}
 
-export default SignIn;
+export default SignIn
 
-// Styled Components
 const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* height: calc(100vh - 56px); */
+  min-height: calc(100vh - 56px);
   color: ${({ theme }) => theme.text};
-`;
+  padding: 20px;
+`
 
 const Wrapper = styled.div`
   display: flex;
@@ -47,24 +46,41 @@ const Wrapper = styled.div`
   align-items: center;
   background-color: ${({ theme }) => theme.bgLighter};
   border: 1px solid ${({ theme }) => theme.soft};
-  padding: 20px 50px;
+  padding: 20px;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
   gap: 15px;
-`;
+  width: 100%;
+  max-width: 400px;
+  
+  @media (max-width: 480px) {
+    padding: 15px;
+    gap: 10px;
+  }
+`
 
 const Title = styled.h1`
   font-size: 24px;
   margin-bottom: 10px;
   color: ${({ theme }) => theme.text};
-`;
+  
+  @media (max-width: 480px) {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+`
 
 const SubTitle = styled.h2`
   font-size: 18px;
   font-weight: 400;
   margin-bottom: 10px;
   color: ${({ theme }) => theme.textSoft};
-`;
+  
+  @media (max-width: 480px) {
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+`
 
 const Input = styled.input`
   width: 100%;
@@ -79,10 +95,14 @@ const Input = styled.input`
   &:focus {
     border-color: ${({ theme }) => theme.primary};
   }
-`;
+  
+  @media (max-width: 480px) {
+    padding: 8px;
+    font-size: 13px;
+  }
+`
 
 const Button = styled.button`
-  /* width: 100%; */
   padding: 10px 20px;
   font-size: 16px;
   font-weight: 500;
@@ -92,16 +112,43 @@ const Button = styled.button`
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s;
+  width: 100%;
 
   &:hover {
     background-color: ${({ theme }) => theme.primaryHover};
   }
-`;
+  
+  @media (max-width: 480px) {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+`
 
 const Divider = styled.span`
   font-size: 14px;
   color: ${({ theme }) => theme.textSoft};
-`;
+  position: relative;
+  width: 100%;
+  text-align: center;
+  margin: 10px 0;
+  
+  &::before, &::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 40%;
+    height: 1px;
+    background-color: ${({ theme }) => theme.soft};
+  }
+  
+  &::before {
+    left: 0;
+  }
+  
+  &::after {
+    right: 0;
+  }
+`
 
 const More = styled.div`
   margin-top: 20px;
@@ -110,13 +157,13 @@ const More = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
+`
 
 const Links = styled.div`
   margin-top: 10px;
   display: flex;
   gap: 15px;
-`;
+`
 
 const Link = styled.span`
   cursor: pointer;
@@ -126,4 +173,5 @@ const Link = styled.span`
   &:hover {
     color: ${({ theme }) => theme.text};
   }
-`;
+`
+
